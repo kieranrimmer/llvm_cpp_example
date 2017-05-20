@@ -5,6 +5,8 @@ This is an old example of the LLVM C++ backend, ported onto LLVM 5.0.
 
 I'm writing a compiler and want to use LLVM for the backend.  This is useful as a sandbox / example.
 
+All it actually does is print out the LLVM IR code.
+
 ### What does this reprepsent?
 
 main.cpp is the llvm c++ backend representation of the following c program:
@@ -32,6 +34,12 @@ int main()
 ```
 clang++ -g -O3 `llvm-config --cxxflags --ldflags --system-libs --libs core` main.cpp -o toy 
 
+```
+
+### Run it
+
+```
+./toy
 ```
 
 ### Acknowledgement
