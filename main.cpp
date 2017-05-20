@@ -37,7 +37,7 @@ Module *makeLLVMModule();
 int main(int argc, char **argv) {
   Mod = makeLLVMModule();
 //  verifyModule(*Mod, PrintMessageAction);
-  PassManager<Module> *PM = new PassManager<Module>();
+    PassManager<Module> *PM = new PassManager<Module>();
     AnalysisManager<Module> AM;
 //  ModulePass::createPrinterPass()
 //   ModulePass *MP = createModuleDebugInfoPrinterPass();
