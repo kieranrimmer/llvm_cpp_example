@@ -32,7 +32,7 @@ int main()
 ### Compilation
 
 ```
-clang++ -g -O3 `llvm-config --cxxflags --ldflags --system-libs --libs core` main.cpp -o toy 
+clang++ -g -O3 `llvm-config --cxxflags --ldflags --system-libs --libs all` main.cpp -o toy 
 
 ```
 

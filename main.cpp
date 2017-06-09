@@ -26,6 +26,43 @@
 
 #include <iostream>
 
+#include "llvm/ADT/APFloat.h"
+#include "llvm/ADT/Optional.h"
+#include "llvm/ADT/STLExtras.h"
+#include "llvm/IR/BasicBlock.h"
+#include "llvm/IR/Constants.h"
+#include "llvm/IR/DerivedTypes.h"
+#include "llvm/IR/Function.h"
+#include "llvm/IR/Instructions.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/LegacyPassManager.h"
+#include "llvm/IR/Module.h"
+#include "llvm/IR/Type.h"
+#include "llvm/IR/Verifier.h"
+#include "llvm/Support/FileSystem.h"
+#include "llvm/Support/Host.h"
+#include "llvm/Support/raw_ostream.h"
+#include "llvm/Support/TargetRegistry.h"
+#include "llvm/Support/TargetSelect.h"
+#include "llvm/Target/TargetMachine.h"
+#include "llvm/Target/TargetOptions.h"
+#include <algorithm>
+#include <cassert>
+#include <cctype>
+#include <cstdio>
+#include <cstdlib>
+#include <map>
+#include <memory>
+#include <string>
+#include <system_error>
+#include <utility>
+#include <vector>
+
+using namespace llvm;
+using namespace llvm::sys;
+
+
 using namespace llvm;
 
 LLVMContext TheContext;
@@ -48,6 +85,10 @@ int main(int argc, char **argv) {
     Mod->print(errs(), new AssemblyAnnotationWriter());
     std::cout << "executing main()... dump caled on module:" << std::endl;
     Mod->dump();
+    legacy::PassManager pass;
+
+    pass.add(createVerifierPass());
+    pass.run(*Mod);
     return 0;
 }
 
@@ -250,7 +291,7 @@ Module *makeLLVMModule() {
         AttributeList int32_call1_PAL;
         int32_call1->setAttributes(int32_call1_PAL);
 
-        ReturnInst::Create(mod->getContext(), label_entry_18);
+        ReturnInst::Create(mod->getContext(), const_int32_12, label_entry_18);
 
     }
 
